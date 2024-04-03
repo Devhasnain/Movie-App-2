@@ -6,6 +6,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import MainTab from "@/navigation/MainTab";
 import { FavoriteMoviesProvider } from "@/context/FavoriteMoviesContext";
 import COLORS from "@/constants/colors";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 const MyTheme = {
   ...DefaultTheme,
@@ -19,14 +20,16 @@ const MyTheme = {
 export default function App() {
   return (
     <PaperProvider>
-      <FavoriteMoviesProvider>
-        <StatusBar barStyle={"light-content"} backgroundColor={"black"} />
-        <SafeAreaProvider>
-          <NavigationContainer theme={MyTheme}>
-            <MainTab />
-          </NavigationContainer>
-        </SafeAreaProvider>
-      </FavoriteMoviesProvider>
+      <AuthContextProvider>
+        <FavoriteMoviesProvider>
+          <StatusBar barStyle={"light-content"} backgroundColor={"black"} />
+          <SafeAreaProvider>
+            <NavigationContainer theme={MyTheme}>
+              <MainTab />
+            </NavigationContainer>
+          </SafeAreaProvider>
+        </FavoriteMoviesProvider>
+      </AuthContextProvider>
     </PaperProvider>
   );
 }

@@ -29,6 +29,7 @@ interface HorizontalListProps {
     handler: () => void;
   };
   itemClickHandler?: (id: number) => void;
+  viewAction?: any;
 }
 
 const ListItem = ({ item, itemClickHandler }: ListItemProps) => {
@@ -62,6 +63,7 @@ const HorizontalList = ({
   data,
   label,
   action,
+  viewAction,
   itemClickHandler,
 }: HorizontalListProps) => {
   return (
@@ -77,18 +79,19 @@ const HorizontalList = ({
           <Label>{label}</Label>
 
           {action ? (
-            <SeeAllBtn
-            onPress={action.handler}
-            
-            >
-            <SeeAllText style={{ color: "white" }}>{action?.text ?? "View all"}</SeeAllText>
-            <MaterialIcons name="arrow-forward" color={"white"} size={15} />
-          </SeeAllBtn>
-          ) : (
-            <SeeAllBtn>
+            <SeeAllBtn onPress={action.handler}>
+              <SeeAllText style={{ color: "white" }}>
+                {action?.text ?? "View all"}
+              </SeeAllText>
+              <MaterialIcons name="arrow-forward" color={"white"} size={15} />
+            </SeeAllBtn>
+          ) : viewAction ? (
+            <SeeAllBtn onPress={viewAction}>
               <SeeAllText style={{ color: "white" }}>View all</SeeAllText>
               <MaterialIcons name="arrow-forward" color={"white"} size={15} />
             </SeeAllBtn>
+          ) : (
+            <></>
           )}
         </RowHeaderContainer>
       </View>

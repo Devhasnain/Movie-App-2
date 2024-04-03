@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <HeroSection  onPress={itemClickHandler} />
+      <HeroSection onPress={itemClickHandler} />
       <View
         style={{
           display: "flex",
@@ -62,21 +62,45 @@ const HomeScreen = ({ navigation }: Props) => {
           data={trendingMovies}
           label="Trending"
           itemClickHandler={itemClickHandler}
+          viewAction={() => {
+            navigation.navigate("Category", {
+              data: trendingMovies,
+              category: "Trending",
+            });
+          }}
         />
         <HorizontalList
           data={nowPlayingMovies}
           label="Now Playing"
           itemClickHandler={itemClickHandler}
+          viewAction={() => {
+            navigation.navigate("Category", {
+              data: nowPlayingMovies,
+              category: "Now Playing",
+            });
+          }}
         />
         <HorizontalList
           data={upcomingMovies}
           label="Upcoming"
           itemClickHandler={itemClickHandler}
+          viewAction={() => {
+            navigation.navigate("Category", {
+              data: upcomingMovies,
+              category: "Upcoming",
+            });
+          }}
         />
         <HorizontalList
           data={popularMovies}
           label="Popular"
           itemClickHandler={itemClickHandler}
+          viewAction={() => {
+            navigation.navigate("Category", {
+              data: popularMovies,
+              category: "Popular",
+            });
+          }}
         />
       </View>
     </ScrollView>

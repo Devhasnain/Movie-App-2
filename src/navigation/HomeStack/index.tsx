@@ -46,24 +46,6 @@ const HomeStack = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="MovieDetail"
-        component={MovieDetailScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => <Ionicons name="home" size={30} color={"white"} style={{padding:15, backgroundColor:focused?"red":"blwhite", borderRadius:100}} />,
-        }}
-      />
-      <Tab.Screen
-        name="FullCast"
-        component={FullCastScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => <Ionicons name="home" size={30} color={"white"} style={{padding:15, backgroundColor:focused?"red":"blwhite", borderRadius:100}} />,
-        }}
-      />
-
-       */}
 
       <Tab.Screen
         name="Search"

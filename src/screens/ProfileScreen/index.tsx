@@ -9,34 +9,47 @@ import ThreeColumnList from "@/components/UI/ThreeColumnList";
 import { ProfileStackParamList } from "@/types/navigation";
 import { FavoriteMoviesContext } from "@/context/FavoriteMoviesContext";
 import { Movie } from "@/types/api";
+import { AuthContext } from "@/context/AuthContext";
+import { Button } from "react-native-paper";
+import { auth } from "@/firebase/firebase";
 
-type Props = any
+type Props = any;
 
 const ProfileScreen = ({ navigation }: Props) => {
-  const favoriteContext = useContext(FavoriteMoviesContext)
+  const favoriteContext = useContext(FavoriteMoviesContext);
+
+  const Auth = useContext(AuthContext);
 
   const handleListItemPress = (id: number) => {
     navigation.navigate("MovieDetail", { id: id });
   };
 
+  const handleLogout = async () => {
+    await auth.signOut();
+    Auth?.setUser(null);
+  };
+
   return (
     <SafeAreaView
-      style={{ flex: 1, marginBottom: 8, }}
+      style={{
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      <UserDetail />
-      <View style={{ paddingHorizontal: 12, width: "100%" }}>
-        <Text
-          style={{
-            color: COLORS.secondary,
-            fontSize: 32,
-            fontWeight: "bold",
-            marginVertical: 12,
-          }}
-        >
-          Favorite Movies
-        </Text>
-        <ThreeColumnList data={favoriteContext?.favoriteMovies as Movie[]} onItemPress={handleListItemPress} />
-      </View>
+      <UserDetail user={Auth?.user} />
+
+      <Button
+        onPress={handleLogout}
+        contentStyle={{
+          backgroundColor: "red",
+        }}
+        textColor="white"
+      >
+        Logout
+      </Button>
     </SafeAreaView>
   );
 };

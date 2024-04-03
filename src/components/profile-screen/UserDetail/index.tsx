@@ -4,11 +4,15 @@ import { Avatar } from "react-native-paper";
 
 import COLORS from "@/constants/colors";
 
-const UserDetail = () => {
+type Props = {
+  user: any;
+};
+
+const UserDetail = ({ user }: Props) => {
   return (
     <Container>
       <Avatar.Text size={72} label="DU" />
-      <UserName>Dummy User</UserName>
+      <UserName>{user?.email}</UserName>
     </Container>
   );
 };
@@ -16,7 +20,6 @@ const UserDetail = () => {
 export default UserDetail;
 
 const Container = styled.View`
-  background-color: ${COLORS.secondary};
   width: 100%;
   align-items: center;
   justify-content: center;
